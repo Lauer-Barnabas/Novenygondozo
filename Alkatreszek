@@ -1,13 +1,67 @@
--
--
--
--
--
--
--
--
--
--
--
--
--
+-Raspberry PI 2 model B V1.1
+4 magos CPU
+1 GB RAM
+teljes kompatibilitás a B+ modellel
+ver1.1  BCM2836 proc.
+Core Architecture: ARM
+Core Sub-Architecture: ARM7
+Quad Core CPU (SoC Broadcom BCM2836 quad core Cortex A7 processor @ 900MHz  (overclockable @ 1.1 GHz),  VideoCore IV GPU),
+1GB LPDDR2 RAM,
+900MHz Board Clock Speed,
+40 GPIO Pins,
+4 x USB Ports,
+4 Pole Stereo Output,
+HDMI Port,
+10/100 Ethernet,
+Micro SD Card Slot
+Méret: 85 x 56 mm
+6x-os teljesítmény
+
+-GPIO kábel
+
+-GPIO T-típusú cobbler expander
+
+-Breadboard
+
+-csatlakozó kábelek
+
+-AHT10 hőmérséklet és páratartalom érzékelő I2C-vel 
+specifikációk:
+Típus: AHT10
+Üzemi feszültség: 1.8 - 6V
+Interfész: I2C
+Mérési tartomány -40 ° - 85 ° C / 0 - 100% relatív páratartalom
+Pontosság: ± 0.3 ° C / ± 2%
+Az AHT10 teljes meghibásodása esetén a 3.3 V-os tápegységhez való csatlakoztatás után javasoljuk, hogy tanulmányozza a következő hivatkozást:
+https://electronics.stackexchange.com/questions/537701/aht10-temperature-and-humidity-sensor-does-not-work-anymore
+Problémákat okozhat az LDO vezérlő, amely kiforrasztható és az útvonalak rövidre zárhatók.
+
+-Kis vízpumpa
+Kisméretű vízszivattyú, amely a csatlakoztatott feszültségtől függően óránként körülbelül 100 liter vizet képes pumpálni. A szivattyúba egy kis 3V - 6V motor van beépítve, mely akár 1 méteres magasságig is képes felnyomni a vizet. A szivattyú csatlakoztatása nagyon egyszerű, a piros kábel plusz, a fehér mínusz csatlakoztatva és a szivattyú azonnal használható.
+Kínálunk egy típusú vízszivattyút fekete-fehér színben. Ha egy adott szín felkeltette érdeklődését, kérjük, írjon nekünk megjegyzést az Önt érdeklő rendelésről, ellenkező esetben véletlenszerűen választunk
+specifikációk:
+Üzemi feszültség: 3V - 6V
+Üzemi áram: 180mA
+Maximális lökethossz: 40 cm - 110 cm
+Átfolyás: 80 liter/óra - 120 liter/óra
+Kimenet külső átmérője: 7.5 mm
+Belső lefolyó átmérő: 4.7 mm
+Élettartam: 500 óra
+Méretek: 45 mm x 24 mm (magasság x átmérő)
+
+-Kapacitív talajnedvesség-érzékelő
+Kapacitív talajnedvesség-érzékelő analóg kimenettel. A modul a népszerű Moisture Sensor sorozat 1.2-es verziója. A modult gyakran használják önöntöző vagy automatikus üvegházi öntözési projektekben.
+specifikációk:
+Üzemi feszültség: 3.3V - 5V
+Kimenet: 0 - 3.3V páratartalomtól függően
+
+-TEMT6000 fényerő érzékelő
+z érzékelő lehetővé teszi a spektrum látható részének rögzítését az infravörös rész nélkül. A modult úgy tervezték, hogy a lehető legjobban illeszkedjen az emberi látáshoz.
+További információért javasoljuk a tanulmányozást adatlap. A chipbe egy egyszerű fototranzisztor van beépítve, a kollektor feszültsége nem haladhatja meg a 6 V-ot.
+specifikációk:
+Üzemi feszültség: 3.3V - 5V
+Szkennelési szög: 60°
+Analóg kimenet
+Spektrum: 390-700 nm
+
+
