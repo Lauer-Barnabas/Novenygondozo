@@ -64,4 +64,13 @@ Szkennelési szög: 60°
 Analóg kimenet
 Spektrum: 390-700 nm
 
-
+-MCP3002 i/p microchip
+10-bit resolution
+±1 LSB Maximum DNL
+±1 LSB maximum INL
+Two single-ended channels
+On-chip sample and hold
+SPI serial interface (modes 0,0 and 1,1)
+200kSPS Maximum sampling rate at VDD = 5V
+75kSPS Maximum sampling rate at VDD = 2.7V
+Low power CMOS technology
