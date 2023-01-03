@@ -32,9 +32,7 @@ Típus: AHT10
 Interfész: I2C
 Mérési tartomány -40 ° - 85 ° C / 0 - 100% relatív páratartalom
 Pontosság: ± 0.3 ° C / ± 2%
-Az AHT10 teljes meghibásodása esetén a 3.3 V-os tápegységhez való csatlakoztatás után javasoljuk, hogy tanulmányozza a következő hivatkozást:
-https://electronics.stackexchange.com/questions/537701/aht10-temperature-and-humidity-sensor-does-not-work-anymore
-Problémákat okozhat az LDO vezérlő, amely kiforrasztható és az útvonalak rövidre zárhatók.
+
 
 -Kis vízpumpa
 Kisméretű vízszivattyú, amely a csatlakoztatott feszültségtől függően óránként körülbelül 100 liter vizet képes pumpálni. A szivattyúba egy kis 3V - 6V motor van beépítve, mely akár 1 méteres magasságig is képes felnyomni a vizet. A szivattyú csatlakoztatása nagyon egyszerű, a piros kábel plusz, a fehér mínusz csatlakoztatva és a szivattyú azonnal használható.
