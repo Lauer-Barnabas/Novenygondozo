@@ -35,10 +35,10 @@ def get_adc(channel):
 #Adatok bekérése
 
 print("Udvozoljuk a hazi novenygondozo beallitasainal!\n")
-ido=int(input("Kérem adja meg hany percenkent legyen ellenorzes"))
+ido=int(input("Kérem adja meg hany percenkent legyen ellenorzes "))
 i=0
 while i<1 or i>3:
-    i=int(input("Kérem adja meg a noveny homersekletigenyet\n1-hidegturo\n2-semleges\n3-melegturo"))
+    i=int(input("Kérem adja meg a noveny homersekletigenyet\n1-hidegturo\n2-semleges\n3-melegturo "))
 if i==1:
     hom=8
 elif i==2:
@@ -47,7 +47,7 @@ elif i==3:
     hom=12
 j=0
 while j<1 or j>2:
-    j=int(input("Kérem adja meg a noveny talajanak minoseget\n1-viragfold\n2-homokos talaj"))
+    j=int(input("Kérem adja meg a noveny talajanak minoseget\n1-viragfold\n2-homokos talaj "))
 if j==1:
     taln=380
 elif j==2:
