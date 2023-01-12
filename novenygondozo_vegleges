@@ -7,6 +7,8 @@ import board
 import adafruit_ahtx0
 import datetime
 
+#szenzorok beállítása
+
 i2c = board.I2C()  
 sensor = adafruit_ahtx0.AHTx0(i2c)
 spi = spidev.SpiDev(0, 0)
@@ -14,6 +16,8 @@ spi.max_speed_hz = 1200000
 
 GPIO.setup(12, GPIO.IN)
 GPIO.setwarnings(False)
+
+#Talajnedvesség szenzor leolvasás
 
 def get_adc(channel):
     if channel != 0:
@@ -27,7 +31,9 @@ def get_adc(channel):
         adc = (adc << 8) + n
     adc = adc >> 1    
     return adc 
-    
+
+#Adatok bekérése
+
 print("Udvozoljuk a hazi novenygondozo beallitasainal!\n")
 ido=int(input("Kérem adja meg hany percenkent legyen ellenorzes"))
 i=0
@@ -46,23 +52,26 @@ if j==1:
     taln=380
 elif j==2:
     taln=420
+    
+#Fájl megynyitása appendre
+    
 fki=open("adatok.txt","a")
 if __name__ == '__main__':
     try:
         while True:
             print("ellenorzes volt")
-            now = datetime.datetime.now()
+            now = datetime.datetime.now() #Jelenlegi idő lekérése
             current_time = now.strftime("%D %H:%M:%S")
             print("\nAktuális idő=",current_time, file=fki)
-            print("Hőmérséklet: %0.1f C" % sensor.temperature, file=fki)
-            print("Páratartalom: %0.1f %%" % sensor.relative_humidity, file=fki)
+            print("Hőmérséklet: %0.1f C" % sensor.temperature, file=fki) #Hőmérséklet beolvasás és kiírás
+            print("Páratartalom: %0.1f %%" % sensor.relative_humidity, file=fki) #Páratartalom beolvasás és kiírás
             adc_0 = get_adc(1)
             print("Talajnedvesség szenzor érték:", adc_0, file=fki)
-            if GPIO.input(12)==1:
+            if GPIO.input(12)==1: #Fényérzékelő adatbeolvasás
                 print("A növény napos helyen van", file=fki)
             else:
                 print("A nővény árnyékos helyen van", file=fki)
-            if adc_0>taln:
+            if adc_0>taln: #Locsolási feltétel ellenőrzés
                 print("\nLocsolás történt", file=fki)
                 if sensor.temperature>(hom+15) or sensor.relative_humidity<30:
                     mp=4
@@ -70,6 +79,7 @@ if __name__ == '__main__':
                     mp=2
                 else:
                     mp=3
+                #Motor üzemeltetés
                 GPIO.setup(26, GPIO.OUT)
                 GPIO.output(26, True)
                 time.sleep(mp)
