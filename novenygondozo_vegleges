@@ -7,21 +7,14 @@ import board
 import adafruit_ahtx0
 import datetime
 
-#i2c és spi port beállítás
 i2c = board.I2C()  
 sensor = adafruit_ahtx0.AHTx0(i2c)
 spi = spidev.SpiDev(0, 0)
 spi.max_speed_hz = 1200000
 
-
+GPIO.setup(12, GPIO.IN)
 GPIO.setwarnings(False)
-def valmap(value, istart, istop, ostart, ostop):
-    value = ostart + (ostop - ostart) * ((value - istart) / (istop - istart))
-    if value > ostop:
-       value = ostop
-    return value
 
-#talajnedvesség jel olvasás
 def get_adc(channel):
     if channel != 0:
         channel = 1
@@ -34,34 +27,54 @@ def get_adc(channel):
         adc = (adc << 8) + n
     adc = adc >> 1    
     return adc 
-
-#fájl megnyitása append-re
+    
+print("Udvozoljuk a hazi novenygondozo beallitasainal!\n")
+ido=int(input("Kérem adja meg hany percenkent legyen ellenorzes"))
+i=0
+while i<1 or i>3:
+    i=int(input("Kérem adja meg a noveny homersekletigenyet\n1-hidegturo\n2-semleges\n3-melegturo"))
+if i==1:
+    hom=8
+elif i==2:
+    hom=10
+elif i==3:
+    hom=12
+j=0
+while j<1 or j>2:
+    j=int(input("Kérem adja meg a noveny talajanak minoseget\n1-viragfold\n2-homokos talaj"))
+if j==1:
+    taln=380
+elif j==2:
+    taln=420
 fki=open("adatok.txt","a")
-#fájlba adatok kiírása
 if __name__ == '__main__':
     try:
         while True:
-            now = datetime.datetime.now() #dátum és idő bekérés
-            current_time = now.strftime("%D %H:%M:%S") #idő formátum beállítása
-            print("\nAktuális idő=",current_time, file=fki) #dátum és idő fájlba írás
-            print("Temperature: %0.1f C" % sensor.temperature, file=fki) #hőmérséklet fájlba írás
-            print("Humidity: %0.1f %%" % sensor.relative_humidity, file=fki) #páratartalom fájlba írás
-            adc_0 = get_adc(1) #talajnedvesség adatbekérés
-            print("Soil Moisture Sensor value:", adc_0, file=fki) #dtalajnedvesség fájlba írás
-            if adc_0<300: #száraz talaj esetén locsolás elindítása, locsolás hosszát hőmérséklet illetve páratartalom határozza meg
+            print("ellenorzes volt")
+            now = datetime.datetime.now()
+            current_time = now.strftime("%D %H:%M:%S")
+            print("\nAktuális idő=",current_time, file=fki)
+            print("Hőmérséklet: %0.1f C" % sensor.temperature, file=fki)
+            print("Páratartalom: %0.1f %%" % sensor.relative_humidity, file=fki)
+            adc_0 = get_adc(1)
+            print("Talajnedvesség szenzor érték:", adc_0, file=fki)
+            if GPIO.input(12)==1:
+                print("A növény napos helyen van", file=fki)
+            else:
+                print("A nővény árnyékos helyen van", file=fki)
+            if adc_0>taln:
                 print("\nLocsolás történt", file=fki)
-                if sensor.temperature>25 or sensor.relative_humidity<30:
-                    mp=7
-                elif sensor.temperature<15 or sensor.relative_humidity>0:
-                    mp=3
+                if sensor.temperature>(hom+15) or sensor.relative_humidity<30:
+                    mp=4
+                elif sensor.temperature<(hom+5) or sensor.relative_humidity>0:
+                    mp=2
                 else:
-                    mp=5
-		#vízpumpa bekapcsolása
-                GPIO.setup(26, GPIO.OUT) 
+                    mp=3
+                GPIO.setup(26, GPIO.OUT)
                 GPIO.output(26, True)
                 time.sleep(mp)
                 GPIO.output(26, False)
-            time.sleep(5)
+            time.sleep(ido*60)
         
     finally:
         GPIO.cleanup()
