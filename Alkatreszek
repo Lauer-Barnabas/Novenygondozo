@@ -72,3 +72,15 @@ SPI serial interface (modes 0,0 and 1,1)
 200kSPS Maximum sampling rate at VDD = 5V
 75kSPS Maximum sampling rate at VDD = 2.7V
 Low power CMOS technology
+
+KEMET PCB Mount Signal Relay, 3V dc Coil, 2A Switching Current, SPDT
+Coil Voltage    3V dc
+Contact Configuration    SPDT
+Mounting Type    PCB Mount
+Maximum Switching Current AC    2 A
+Maximum Switching Current DC    2 A
+Maximum Switching Voltage AC    250V ac
+Maximum Switching Voltage DC    220V dc
+Series    EE2
+Maximum Switching Power DC    24 W
+Switching Current    2A
